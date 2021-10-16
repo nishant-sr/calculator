@@ -13,10 +13,6 @@ nums.forEach((num)=>{
     })
 })
 
-// when you enter a number, you need to store that as the starting point
-// and then save that to be used in an operation you perform with the operation you choose next
-// when you enter another number after, you need to store that as the newValue
-
 ops.forEach((op)=>{
     op.addEventListener("click",function(){
         if(currentOp == ''){
@@ -26,7 +22,7 @@ ops.forEach((op)=>{
             soFar = operate(currentOp,soFar,parseInt(display.textContent));
             currentOp = op.textContent;
         }
-        clearDisplay();
+        display.innerHTML='';
     })
 })
 
@@ -35,11 +31,11 @@ equals.addEventListener("click",function(){
     
 })
 
-function clearDisplay(){
+clearButton.addEventListener("click",function(){
     display.innerHTML='';
-}
-
-clearButton.addEventListener("click",() => clearDisplay())
+    soFar = 0;
+    currentOp = '';
+})
 
 function add(x,y){
     return x + y;
