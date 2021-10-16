@@ -1,4 +1,5 @@
 const display = document.querySelector('.result');
+const prev = document.querySelector('.prev');
 const nums = document.querySelectorAll('.num');
 const ops = document.querySelectorAll('.op');
 const equals = document.querySelector('.eq');
@@ -21,6 +22,7 @@ ops.forEach((op)=>{
         }else{
             soFar = operate(currentOp,soFar,parseInt(display.textContent));
             currentOp = op.textContent;
+            prev.textContent = `${soFar} ${currentOp}`;
         }
         display.innerHTML='';
     })
@@ -28,11 +30,12 @@ ops.forEach((op)=>{
 
 equals.addEventListener("click",function(){
     display.textContent = operate(currentOp,soFar,parseInt(display.textContent));
-    
+    prev.innerHTML='';
 })
 
 clearButton.addEventListener("click",function(){
     display.innerHTML='';
+    prev.innerHTML='';
     soFar = 0;
     currentOp = '';
 })

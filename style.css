@@ -9,7 +9,7 @@ body{
     align-items: center;
 }
 
-.result{
+.view{
     height: 5em;
     width:20em;
     background-color: rgba(216, 213, 213, 0.431);
@@ -17,6 +17,7 @@ body{
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
 }
+
 
 .buttons{
     height: 20em;
