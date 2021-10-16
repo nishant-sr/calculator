@@ -1,12 +1,10 @@
 const display = document.querySelector('.result');
-const prev = document.querySelector('.prev');
 const nums = document.querySelectorAll('.num');
 const ops = document.querySelectorAll('.op');
 const equals = document.querySelector('.eq');
 const clearButton = document.querySelector('.ce');
 
-let currentVal = 0;
-let displayVal = 0;
+var soFar = 0;
 let currentOp = '';
 
 nums.forEach((num)=>{
@@ -15,20 +13,26 @@ nums.forEach((num)=>{
     })
 })
 
+// when you enter a number, you need to store that as the starting point
+// and then save that to be used in an operation you perform with the operation you choose next
+// when you enter another number after, you need to store that as the newValue
 
 ops.forEach((op)=>{
     op.addEventListener("click",function(){
-        // displayVal = parseInt(display.textContent);
-        // console.log("DISPLAY VAL: " + displayVal)
-        // currentOp = op.textContent;
-        // currentVal = operate(currentOp,currentVal,displayVal)
-        // console.log("CURRENT VAL: " + currentVal);
-        // clearDisplay();
+        if(currentOp == ''){
+            currentOp = op.textContent;
+            soFar = parseInt(display.textContent);
+        }else{
+            soFar = operate(currentOp,soFar,parseInt(display.textContent));
+            currentOp = op.textContent;
+        }
+        clearDisplay();
     })
 })
 
 equals.addEventListener("click",function(){
-    display.textContent = operate(currentOp,currentVal,displayVal);
+    display.textContent = operate(currentOp,soFar,parseInt(display.textContent));
+    
 })
 
 function clearDisplay(){
