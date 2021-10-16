@@ -7,8 +7,8 @@ const clearButton = document.querySelector('.ce');
 
 var soFar = 0;
 let currentOp = '';
-
 let divZeroError = "CAN'T DIVIDE BY 0! CLEARING EVERYTHING!";
+
 
 function clearEverything(){
     display.innerHTML='';
@@ -16,6 +16,7 @@ function clearEverything(){
     soFar = 0;
     currentOp = '';
 }
+
 
 function divideByZero(){
     return (currentOp == '/' && parseFloat(display.textContent) == 0.00000)
@@ -32,6 +33,7 @@ ops.forEach((op)=>{
         if(currentOp == ''){
             currentOp = op.textContent;
             soFar = parseFloat(display.textContent);
+            prev.textContent = `${soFar} ${currentOp}`;
         }else{
             if(divideByZero()){
                 clearEverything();
@@ -52,12 +54,17 @@ equals.addEventListener("click",function(){
         alert(divZeroError);
     }else{
         display.textContent = operate(currentOp,soFar,parseFloat(display.textContent)).toFixed(5);
+        soFar = 0;
+        currentOp = '';
     }
 })
 
 clearButton.addEventListener("click",(function(){
     clearEverything();
 }))
+
+
+
 
 function add(x,y){
     return x + y;
